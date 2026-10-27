@@ -1,0 +1,22 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csb-cicd-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: csb-cicd-project
+  template:
+    metadata:
+      labels:
+        app: csb-cicd-project
+    spec:
+      containers:
+        - name: csb-cicd-project
+          image: csb-cicd-project:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
